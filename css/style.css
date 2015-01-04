@@ -83,6 +83,22 @@ ul, ul li{
 .header .block-b{
 	width: 70%;
 	padding: .4em;
+	position: relative;
+}
+.header .block-b:before,
+.header .block-b:after{
+	content: '';
+	width: 1px;
+	height: 5px;
+	background-color: #7dbbd2;
+	position: absolute;
+	bottom: .4em;
+}
+.header .block-b:before{
+	left: .4em;
+}
+.header .block-b:after{
+	right: .4em;
 }
 .header .locate_btn{
 	width: 100%;
@@ -108,16 +124,14 @@ ul, ul li{
 	border-style: solid;
 	border-width: 0 0 1px 0;
 }
-.header .block-a:before{
-	border: solid transparent;
-	content: ' ';
-	height: 0;
+.header .block-a:after{
+	content: '';
+	background-image: url(../images/locate_bg.png);
+	background-repeat: no-repeat;
+	background-size: auto 100%;
+	width: .6em;
+	height: .6em;
 	position: absolute;
-	width: 0;
-	z-index: 10;
-	border-width: .4em;
-	border-bottom-color: #7dbbd2;
-	border-right-color: #7dbbd2;
 	bottom: .4em;
 	right: .4em;
 }
@@ -125,7 +139,8 @@ ul, ul li{
 .header .block-b input {
 	border: 1px solid #7dbbd2;
 	border-width: 0 0 1px 0;
-	padding: .3em .4em ;
+	border-radius: 0;
+	padding: .35em .4em .3em .4em;
 	padding-left: 1.2em;
 	margin: 0;
 	min-height: 1em;
@@ -213,9 +228,9 @@ ul, ul li{
 	display: block;
 	position: relative;
 	text-align: left;
-	-webkit-box-shadow: 0 .2em .5em #b4b4b4 ;
-	-moz-box-shadow: 0 .2em .5em #b4b4b4 ;
-	box-shadow: 0 .2em .5em #b4b4b4 ;
+	-webkit-box-shadow: 0 .15em .15em #b4b4b4 ;
+	-moz-box-shadow: 0 .15em .15em #b4b4b4 ;
+	box-shadow: 0 .15em .15em #b4b4b4 ;
 	color: #fff;
 }
 .quicklink li h3{
@@ -267,7 +282,7 @@ ul, ul li{
 }
 .subsec:before{
 	content: "";
-	display: table;
+	display: block;
 	height: 6em;
 	width: 1.2em;
 	padding-bottom: 1px; 
@@ -277,7 +292,7 @@ ul, ul li{
 }
 .ss1:before{
 	background: url(../images/ss1.png) right no-repeat transparent;
-	background-size: auto 100%;
+	background-size:  auto 100%;
 }
 .ss2:before{
 	background: url(../images/ss2.png) left no-repeat transparent;
@@ -369,11 +384,11 @@ h4.title{
 	background-repeat: no-repeat;
 	background-size: 100%;
 	width: 1em;
-	height: 1em;
+	height: .6em;
 	position: absolute;
-	right: 1em;
+	right: .6em;
 	top: 50%;
-	margin-top: -0.5em;
+	margin-top: -0.25em;
 }
 .locate .procity .expand:after{
 	background-image: url(../images/carat-u.png);
