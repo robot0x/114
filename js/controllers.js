@@ -1,21 +1,39 @@
-var indexModule = angular.module("IndexModule", []);
+var indexModule = angular.module('IndexModule', []);
 
-var yellowModule = angular.module("YellowModule", []);
+var yellowModule = angular.module('YellowModule', []);
+
+var locateModule = angular.module('LocateModule',[]);
 
 yellowModule.controller('yellowCtrl', function($scope, $http, $state, $stateParams) {
 	var apiUrl = 'http://search.teddymobile.cn/v1/api/yellow.api?yellow='+$stateParams.key;
 	$http.jsonp(apiUrl+'&callfunc=JSON_CALLBACK')
     .success(function(data) {
-    	console.log(data);
+    	//console.log(data);
     	$scope.yellowList = data;
+    	yellowKeyList = [];
+    	for(var key in data.list){
+    		yellowKeyList.push(key);
+    	}
+    	$scope.yellowKeyList = yellowKeyList;
     })
     .error(function(data){
-    	alert('2');
+    	//alert('2');
     	//alert(data);
     });
 });
 
-indexModule.controller('indexCtrl', function($scope, $http, $state, $stateParams) {
+indexModule.controller('indexCtrl',['$scope','$http','$state','$stateParams',function($scope, $http, $state, $stateParams) {
+	if(typeof($.cookie('cons_location')) != 'undefined'){
+		$scope.location = $.cookie('cons_location');
+	}else{
+		$scope.location = $scope.cons_city;
+	}
+	//alert(cons_location);
+	if(typeof($stateParams.address) != 'undefined'){
+		$scope.location = $stateParams.address;
+		$.cookie('cons_location',$stateParams.address);
+	}
+
 	$('#search_input').focus(function() {
 		$('.search-record').css('display', 'block');
 		$('.screen').css('display', 'block');
@@ -44,6 +62,20 @@ indexModule.controller('indexCtrl', function($scope, $http, $state, $stateParams
 		} else {
 			$('#search_btn').removeAttr('style');
 			$('.cancel_btn').css('display', 'block');
+		}
+	});
+}]);
+
+locateModule.controller('locateCtrl', function($scope, $http, $state, $stateParams) {
+	$('.procity .listview .collapsed').click(function(event) {
+		event.preventDefault();
+		if($(this).hasClass('expand')){
+			$(this).removeClass('expand');
+			$(this).next('.collapsed-content').removeAttr('style');
+		}
+		else{
+			$(this).addClass('expand');
+			$(this).next('.collapsed-content').css('display','block');
 		}
 	});
 });

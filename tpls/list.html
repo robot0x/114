@@ -21,10 +21,10 @@
 				</a>
 			</li>
 		</ul>
-		<div class="cate clearfix" ng-repeat="category in yellowList.list">
-			<h4 class="title">{{category}}</h4>
+		<div class="cate clearfix" ng-repeat="yellowKey in yellowKeyList">
+			<h4 class="title">{{yellowKey}}</h4>
 			<ul class="listview">
-				<li class="graphiclist" ng-repeat="item in category">
+				<li class="graphiclist" ng-repeat="item in yellowList.list[yellowKey]">
 					<a href="{{item.url}}" class="btn">
 						<img src="{{item.logo}}">
 						<h2>{{item.name}}</h2>

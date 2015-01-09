@@ -1,4 +1,4 @@
-var app114 = angular.module('app114', ['ui.router','YellowModule','IndexModule']);
+var app114 = angular.module('app114', ['ui.router','YellowModule','IndexModule','LocateModule']);
 /**
  * 由于整个应用都会和路由打交道，所以这里把$state和$stateParams这两个对象放到$rootScope上，方便其它地方引用和注入。
  * 这里的run方法只会在angular启动的时候运行一次。
@@ -8,6 +8,7 @@ var app114 = angular.module('app114', ['ui.router','YellowModule','IndexModule']
  * @return {[type]}
  */
 app114.run(function($rootScope, $state, $stateParams) {
+    $rootScope.cons_city = remote_ip_info['city'];
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 });
@@ -32,9 +33,23 @@ app114.config(function($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('index/address', {
+            url: '/index/address:address',
+            views: {
+                '': {
+                    templateUrl: 'tpls/index.html',
+                    controller: 'indexCtrl'
+                }
+            }
+        })
         .state('yellow',{
-            url: '/yellow:key',
+            url: '/yellow/:key',
             templateUrl: 'tpls/list.html',
             controller: 'yellowCtrl'
+        })
+        .state('locate',{
+            url:'/locate',
+            templateUrl:'tpls/locate.html',
+            controller: 'locateCtrl'
         })
 });
