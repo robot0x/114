@@ -5,7 +5,7 @@ $(document).ready(function() {
 	}
 });
 
-$('#search_input').focus(function() {
+$('#search_input').bind('focus',function() {
 	$('.search-record').css('display','block');
 	$('.screen').css('display','block');
 	$(this).css('width','82%'); 
@@ -18,6 +18,7 @@ $('#search_input').focus(function() {
 		$('.cancel_btn').css('display','block');
 	}
 });
+
 $('#search_input').blur(function() {
 	$('.search-record').removeAttr('style');
 	$('.screen').removeAttr('style');

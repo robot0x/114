@@ -7,7 +7,7 @@
 	<meta name="format-detection" content="telephone=no" />
 	<link rel="shortcut icon" href="favicon.png" type="image/gif" sizes="16×16">
 	<title>列表</title>
-	<link rel="stylesheet" href="./css/style.css"></head>
+	<link rel="stylesheet" href="../css/style.css"></head>
 </head>
 <body>
 	<div class="goodslist">
@@ -21,7 +21,19 @@
 				</a>
 			</li>
 		</ul>
-		<div class="cate clearfix">
+		<div class="cate clearfix" ng-repeat="category in yellowList.list">
+			<h4 class="title">{{category}}</h4>
+			<ul class="listview">
+				<li class="graphiclist" ng-repeat="item in category">
+					<a href="{{item.url}}" class="btn">
+						<img src="{{item.logo}}">
+						<h2>{{item.name}}</h2>
+					</a>
+				</li>
+			</ul>
+			<a href="" class="view">查看全部</a>
+		</div>
+		<!--div class="cate clearfix">
 			<h4 class="title">餐厅</h4>
 			<ul class="listview">
 				<li class="graphiclist">
@@ -69,9 +81,10 @@
 					</a>
 				</li>
 			</ul>
-		</div>
+			<a href="" class="view">查看全部</a>
+		</div-->
 	</div>
-	<script defer src="./js/jquery.min.js"></script>
-	<script defer src="./js/script.js"></script>
+	<!--script defer src="../js/jquery.min.js"></script-->
+	<script defer src="../js/script.js"></script>
 </body>
 </html>
