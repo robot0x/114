@@ -48,7 +48,24 @@ locateModule.controller('locateCtrl', function($scope, $http, $state, $statePara
 });
 
 searchModule.controller('resultCtrl',function($scope, $http, $state, $stateParams) {
-	console.log($stateParams);
+	var key = $stateParams.keywords;
+	var city = $.cookie('cons_location');
+	var log = $.cookie('cons_lng');
+	var lat = $.cookie('cons_lat');
+	var apiUrl = 'http://search.teddymobile.cn/v1/api/search.api?key='+key+'&city='+city+'&log='+log+'&lat='+lat;
+	$http.jsonp(apiUrl+'&callfunc=JSON_CALLBACK')
+    .success(function(data) {
+    	console.log(data);
+    	// $scope.yellowList = data;
+    	// yellowKeyList = [];
+    	// for(var key in data.list){
+    	// 	yellowKeyList.push(key);
+    	// }
+    	// $scope.yellowKeyList = yellowKeyList;
+    })
+    .error(function(data){
+   
+    });
 });
 
 
