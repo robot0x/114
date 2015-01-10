@@ -1,4 +1,4 @@
-var app114 = angular.module('app114', ['ui.router','YellowModule','IndexModule','LocateModule']);
+var app114 = angular.module('app114', ['ui.router','YellowModule','IndexModule','LocateModule','SearchModule']);
 /**
  * 由于整个应用都会和路由打交道，所以这里把$state和$stateParams这两个对象放到$rootScope上，方便其它地方引用和注入。
  * 这里的run方法只会在angular启动的时候运行一次。
@@ -12,6 +12,22 @@ app114.run(function($rootScope, $state, $stateParams) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 });
+
+function getLocation(){
+    var geolocation = new BMap.Geolocation();
+    geolocation.getCurrentPosition(function(r){
+        if(this.getStatus() == BMAP_STATUS_SUCCESS){
+            $.cookie('cons_lng',r.point.lng);
+            $.cookie('cons_lat',r.point.lat);
+        }
+        else {
+        }        
+    },{enableHighAccuracy: true})    
+}
+
+if(typeof($.cookie('cons_lng')) == 'undefined'){
+    getLocation();
+}
 
 /**
  * 配置路由。
@@ -30,6 +46,10 @@ app114.config(function($stateProvider, $urlRouterProvider) {
                 '': {
                     templateUrl: 'tpls/index.html',
                     controller: 'indexCtrl'
+                },
+                'search@index':{
+                    templateUrl:'tpls/search.html',
+                    controller:'searchCtrl'
                 }
             }
         })
@@ -39,6 +59,10 @@ app114.config(function($stateProvider, $urlRouterProvider) {
                 '': {
                     templateUrl: 'tpls/index.html',
                     controller: 'indexCtrl'
+                },
+                'search@index/address':{
+                    templateUrl:'tpls/search.html',
+                    controller:'searchCtrl'
                 }
             }
         })
@@ -51,5 +75,18 @@ app114.config(function($stateProvider, $urlRouterProvider) {
             url:'/locate',
             templateUrl:'tpls/locate.html',
             controller: 'locateCtrl'
+        })
+        .state('result',{
+            url:'/result:keywords',
+            views:{
+                '':{
+                    templateUrl:'tpls/result.html',
+                    controller:'resultCtrl'
+                },
+                'search@result':{
+                    templateUrl:'tpls/search.html',
+                    controller:'searchCtrl'
+                }
+            }
         })
 });
