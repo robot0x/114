@@ -48,24 +48,7 @@ locateModule.controller('locateCtrl', function($scope, $http, $state, $statePara
 });
 
 searchModule.controller('resultCtrl',function($scope, $http, $state, $stateParams) {
-	var key = $stateParams.keywords;
-	var city = $.cookie('cons_location');
-	var log = $.cookie('cons_lng');
-	var lat = $.cookie('cons_lat');
-	var apiUrl = 'http://search.teddymobile.cn/v1/api/search.api?key='+key+'&city='+city+'&log='+log+'&lat='+lat;
-	$http.jsonp(apiUrl+'&callfunc=JSON_CALLBACK')
-    .success(function(data) {
-    	console.log(data);
-    	// $scope.yellowList = data;
-    	// yellowKeyList = [];
-    	// for(var key in data.list){
-    	// 	yellowKeyList.push(key);
-    	// }
-    	// $scope.yellowKeyList = yellowKeyList;
-    })
-    .error(function(data){
-   
-    });
+	console.log($stateParams);
 });
 
 
@@ -79,7 +62,8 @@ searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParam
 	$('#search_input').focus(function() {
 		$('.search-record').css('display', 'block');
 		$('.screen').css('display', 'block');
-		$(this).css('width', '82%');
+		$(this).css('width', '84%');
+		$(this).next('.r').css({'right':'16%','margin-right':'.2em'});
 		if ($(this).val().length) {
 			$('.cancel_btn').removeAttr('style');
 			$('#search_btn').css('display', 'block');
@@ -91,6 +75,7 @@ searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParam
 	$('#search_input').blur(function() {
 		$('.search-record').removeAttr('style');
 		$('.screen').removeAttr('style');
+		$(this).next('.r').removeAttr('style');
 		if (!$(this).val().length) {
 			$('.cancel_btn').removeAttr('style');
 			$('#search_btn').removeAttr('style');

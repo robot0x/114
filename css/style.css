@@ -86,8 +86,7 @@ ul, ul li{
 	position: relative;
 }
 .header .block-b:before,
-.header .block-b:after{
-	content: '';
+.header .block-b .r{
 	width: 1px;
 	height: 5px;
 	background-color: #7dbbd2;
@@ -95,9 +94,10 @@ ul, ul li{
 	bottom: .4em;
 }
 .header .block-b:before{
+	content: '';
 	left: .4em;
 }
-.header .block-b:after{
+.header .block-b .r{
 	right: .4em;
 }
 .header .locate_btn{
@@ -163,7 +163,6 @@ ul, ul li{
 .header .block-b input:focus{
 	background-image: none;
 	padding-left: .2em;
-	/*width: 82%;*/
 }
 .header .cancel_btn{
 	color: #8e8e93;
