@@ -2,9 +2,9 @@
 </div>
 <div class="screen"></div>
 <div class="main" ng-controller="resultCtrl">
-	<div class="goodslist" infinite-scroll="demo.nextPage()" infinite-scroll-disabled="demo.busy" infinite-scroll-distance="1">
+	<div class="goodslist" infinite-scroll="result.nextPage()" infinite-scroll-disabled="result.busy" infinite-scroll-distance="10">
 		<ul class="listview recom result">
-			<li class="graphiclist" ng-repeat="item in demo.guans">
+			<li class="graphiclist" ng-repeat="item in result.guans">
 				<a href="{{item.url}}" class="btn">
 					<img src="{{item.logo}}">
 					<h2 ng-bind-html="item.name|trustHtml"></h2>
@@ -13,9 +13,9 @@
 			</li>
 		</ul>
 		<div class="cate clearfix">
-			<h4 class="title">共{{searchList.count}}条搜索结果</h4>
+			<h4 class="title">共{{result.count}}条搜索结果</h4>
 			<ul class="listview">
-				<li class="graphiclist" ng-repeat="item in demo.lists">
+				<li class="graphiclist" ng-repeat="item in result.lists">
 					<a href="{{item.url}}" class="btn">
 						<img src="{{item.logo}}">
 						<h2 ng-bind-html="item.name|trustHtml">
@@ -25,6 +25,6 @@
 				</li>
 			</ul>
 		</div>
-		<div ng-show="demo.busy" style="text-align:center">加载数据...</div>
+		<div ng-show="result.busy" style="text-align:center">加载数据...</div>
 	</div>
 </div>

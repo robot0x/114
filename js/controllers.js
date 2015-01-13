@@ -49,20 +49,22 @@ locateModule.controller('locateCtrl', function($scope, $http, $state, $statePara
 	});
 });
 
-searchModule.controller('resultCtrl',function($scope, $http, $state, $stateParams,Demo) {
+searchModule.controller('resultCtrl',function($scope, $http, $state, $stateParams,Result) {
 	var keywords = $stateParams.keywords;
-	$scope.demo = new Demo(keywords);
+	$scope.result = new Result(keywords);
 });
 
-searchModule.factory('Demo',function($http){
-	var Demo = function(keywords){
+searchModule.factory('Result',function($http){
+	var Result = function(keywords){
 		this.busy = false;
 		this.guans = [];
 		this.lists = [];
+		this.count = 0;
+		this.now = 0;
 		this.keywords = keywords;
 	};
 
-	Demo.prototype.nextPage = function(){
+	Result.prototype.nextPage = function(){
 		if(this.busy) return;
 		this.busy = true;
 		var city = $.cookie('cons_location');
@@ -79,11 +81,12 @@ searchModule.factory('Demo',function($http){
 	    	for(var i = 0;i < data.list.length; i++){
 	    		this.lists.push(data.list[i]);	
 	    	}
+	    	this.count = data.count;
 	    	this.busy = false;
 	    }.bind(this));
 	};
 	
-    return Demo;
+    return Result;
 });
 
 searchModule.filter('trustHtml', function ($sce) {
