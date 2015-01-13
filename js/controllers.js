@@ -28,6 +28,11 @@ indexModule.controller('indexCtrl',['$scope','$http','$state','$stateParams',fun
 		$.cookie('cons_location',$stateParams.address);
 	}
 
+	var py = cityList[$.cookie('cons_location')];
+	$("a[source=gj]").each(function (i, a) {
+		$(a).attr('href', "http://txl.3g.ganji.com/" + py + $(a).attr('url')); //生成对应的url
+	});
+
 }]);
 
 locateModule.controller('locateCtrl', function($scope, $http, $state, $stateParams) {
@@ -70,15 +75,6 @@ searchModule.filter('trustHtml', function ($sce) {
 		return $sce.trustAsHtml(input);
 	}
 });
-
-// searchModule.directive('b',function(){
-// 	return{
-// 		restrict:'E',
-// 		template:'<span class="key" ng-transclude></span>',
-// 		transclude:true
-// 	};
-// });
-
 
 searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParams) {
 	if(typeof($.cookie('cons_location')) != 'undefined'){

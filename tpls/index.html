@@ -1,7 +1,7 @@
 <div class="header fixed" ui-view="search">
 </div>
 <div class="screen"></div>
-<div class="main">
+<div class="main" ng-controller="indexCtrl">
 	<ul class="quicklink clearfix">
 		<li class="block-a  ql1">
 			<a href="http://search.teddymobile.cn/v1/redirect.do?type=opt&name=Q币点卡">
@@ -50,11 +50,11 @@
 	</ul>
 	<div class="subsec ss1">
 		<div class="grid-a">
-			<a ui-sref="yellow({key:'生活家政'})" class="block-a">生活家政</a>
-			<a ui-sref="yellow({key:'招聘'})" class="block-b">招聘</a>
+			<a href="#" source="gj" url="_shenghuo/" class="block-a">生活家政</a>
+			<a href="#" source="gj" url="_wanted/yellowpage/" class="block-b">招聘</a>
 		</div>
 		<div class="grid-a">
-			<a ui-sref="yellow({key:'房产'})" class="block-a">房产</a>
+			<a href="#" source="gj" url="_housing/" class="block-a">房产</a>
 			<a ui-sref="yellow({key:'美食'})" class="block-b">美食</a>
 		</div>
 	</div>
