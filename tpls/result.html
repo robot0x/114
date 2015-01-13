@@ -2,11 +2,11 @@
 </div>
 <div class="screen"></div>
 <div class="main" ng-controller="resultCtrl">
-	<div class="goodslist" infinite-scroll="result.nextPage()" infinite-scroll-disabled="result.busy" infinite-scroll-distance="10">
+	<div class="goodslist">
 		<ul class="listview recom result">
 			<li class="graphiclist" ng-repeat="item in result.guans">
 				<a href="{{item.url}}" class="btn">
-					<img src="{{item.logo}}">
+					<img ng-src="{{item.logo}}">
 					<h2 ng-bind-html="item.name|trustHtml"></h2>
 					<p class="word">"服务至上，顾客至上"</p>
 				</a>
@@ -14,10 +14,10 @@
 		</ul>
 		<div class="cate clearfix">
 			<h4 class="title">共{{result.count}}条搜索结果</h4>
-			<ul class="listview">
+			<ul class="listview" infinite-scroll="result.nextPage()" infinite-scroll-disabled="result.busy" infinite-scroll-distance="1">
 				<li class="graphiclist" ng-repeat="item in result.lists">
 					<a href="{{item.url}}" class="btn">
-						<img src="{{item.logo}}">
+						<img ng-src="{{item.logo}}">
 						<h2 ng-bind-html="item.name|trustHtml">
 						</h2>
 						<p class="word">"服务至上，顾客至上"</p>
@@ -25,6 +25,6 @@
 				</li>
 			</ul>
 		</div>
-		<div ng-show="result.busy" style="text-align:center">加载数据...</div>
+		<div ng-show="result.busy" style="text-align:center" id="loadingText">加载数据...</div>
 	</div>
 </div>

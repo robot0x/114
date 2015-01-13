@@ -17,7 +17,7 @@
 		<ul class="listview">
 			<li class="graphiclist" ng-repeat="item in yellowList.list[yellowKey]">
 				<a href="{{item.url}}" class="btn">
-					<img src="{{item.logo}}">
+					<img ng-src="{{item.logo}}">
 					<h2>{{item.name}}</h2>
 				</a>
 			</li>
@@ -28,7 +28,7 @@
 		<ul class="listview">
 			<li class="graphiclist" ng-repeat="item in yellowList.list">
 				<a href="{{item.url}}" class="btn">
-					<img src="{{item.logo}}">
+					<img ng-src="{{item.logo}}">
 					<h2>{{item.name}}</h2>
 				</a>
 			</li>

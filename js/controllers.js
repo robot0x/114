@@ -67,23 +67,31 @@ searchModule.factory('Result',function($http){
 	Result.prototype.nextPage = function(){
 		if(this.busy) return;
 		this.busy = true;
-		var city = $.cookie('cons_location');
-		var log = $.cookie('cons_lng');
-		var lat = $.cookie('cons_lat');
-		//alert($stateParams.key);
-		var apiUrl = 'http://search.teddymobile.cn/v1/api/search.api?key='+this.keywords+'&city='+city+'&log='+log+'&lat='+lat;
-		$http.jsonp(apiUrl+'&callfunc=JSON_CALLBACK')
-	    .success(function(data) {
-	    	console.log(data);
-	    	for(var i = 0;i < data.guan.length; i++){
-	    		this.guans.push(data.guan[i]);	
-	    	}
-	    	for(var i = 0;i < data.list.length; i++){
-	    		this.lists.push(data.list[i]);	
-	    	}
-	    	this.count = data.count;
-	    	this.busy = false;
-	    }.bind(this));
+		//alert(this.now+" "+this.count);
+		if(this.now < this.count || (this.now == 0 && this.count == 0)){
+			var city = $.cookie('cons_location');
+			var log = $.cookie('cons_lng');
+			var lat = $.cookie('cons_lat');
+			var apiUrl = 'http://search.teddymobile.cn/v1/api/search.api?key='+this.keywords+'&city='+city+'&log='+log+'&lat='+lat+'&offset='+this.now;
+			$http.jsonp(apiUrl+'&callfunc=JSON_CALLBACK')
+		    .success(function(data) {
+		    	console.log(data);
+		    	if(typeof(data.guan) != 'undefined'){
+		    		for(var i = 0;i < data.guan.length; i++){
+		    			this.guans.push(data.guan[i]);	
+		    		}
+		    	}
+		    	for(var i = 0;i < data.list.length; i++){
+		    		this.lists.push(data.list[i]);	
+		    	}
+		    	console.log("length:"+data.list.length+" now:"+this.now);
+		    	this.now += data.list.length;
+		    	this.count = data.count;
+		    	this.busy = false;
+		    }.bind(this));
+		}else{
+			$("#loadingText").text("没有更多数据");
+		}
 	};
 	
     return Result;
