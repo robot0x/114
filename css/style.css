@@ -450,6 +450,9 @@ h4.title{
 	overflow: hidden;
 	white-space: nowrap;
 }
+.listview > li b {
+	color: #33B5E5;
+}
 .listview > li .btn-detail h2{
 	margin: .45em 0;
 }

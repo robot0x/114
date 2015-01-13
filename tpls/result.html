@@ -1,31 +1,36 @@
 <div class="header fixed" ui-view="search">
 </div>
 <div class="screen"></div>
-<div class="main">
+<div class="main" ng-controller="resultCtrl">
 	<div class="goodslist">
 		<ul class="listview recom result">
-			<li class="graphiclist">
+			<!--li class="graphiclist">
 				<a href="#" class="btn">
 					<img src="./images/search_1.png">
 					<h2>海底捞火锅</h2>
 					<p class="word">"服务至上，顾客至上"</p>
 				</a>
+			</li-->
+			<li class="graphiclist" ng-repeat="item in searchList.guan">
+				<a href="{{item.url}}" class="btn">
+					<img src="{{item.logo}}">
+					<h2 ng-bind-html="item.name|trustHtml"></h2>
+					<p class="word">"服务至上，顾客至上"</p>
+				</a>
 			</li>
 		</ul>
 		<div class="cate clearfix">
-			<h4 class="title">共4条搜索结果</h4>
+			<h4 class="title">共{{searchList.count}}条搜索结果</h4>
 			<ul class="listview">
-				<li class="graphiclist">
-					<a href="#" class="btn">
-						<img src="./images/goods.png">
-						<h2>
-							汉庭
-							<span class="key">酒店</span>
-							预定热线
+				<li class="graphiclist" ng-repeat="item in searchList.list">
+					<a href="{{item.url}}" class="btn">
+						<img src="{{item.logo}}">
+						<h2 ng-bind-html="item.name|trustHtml">
 						</h2>
+						<p class="word">"服务至上，顾客至上"</p>
 					</a>
 				</li>
-				<li class="graphiclist">
+				<!--li class="graphiclist">
 					<a href="#" class="btn">
 						<img src="./images/goods.png">
 						<h2>
@@ -54,7 +59,7 @@
 						</h2>
 						<p>位于团结湖区域位于团结湖区域</p>
 					</a>
-				</li>
+				</li-->
 			</ul>
 		</div>
 	</div>

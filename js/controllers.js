@@ -10,7 +10,6 @@ yellowModule.controller('yellowCtrl', function($scope, $http, $state, $statePara
 	var apiUrl = 'http://search.teddymobile.cn/v1/api/yellow.api?yellow='+$stateParams.key;
 	$http.jsonp(apiUrl+'&callfunc=JSON_CALLBACK')
     .success(function(data) {
-    	//console.log(data);
     	$scope.yellowList = data;
     	yellowKeyList = [];
     	for(var key in data.list){
@@ -19,8 +18,6 @@ yellowModule.controller('yellowCtrl', function($scope, $http, $state, $statePara
     	$scope.yellowKeyList = yellowKeyList;
     })
     .error(function(data){
-    	//alert('2');
-    	//alert(data);
     });
 });
 
@@ -56,7 +53,7 @@ searchModule.controller('resultCtrl',function($scope, $http, $state, $stateParam
 	$http.jsonp(apiUrl+'&callfunc=JSON_CALLBACK')
     .success(function(data) {
     	console.log(data);
-    	// $scope.yellowList = data;
+    	$scope.searchList = data;
     	// yellowKeyList = [];
     	// for(var key in data.list){
     	// 	yellowKeyList.push(key);
@@ -67,6 +64,20 @@ searchModule.controller('resultCtrl',function($scope, $http, $state, $stateParam
    
     });
 });
+
+searchModule.filter('trustHtml', function ($sce) {
+	return function (input) {
+		return $sce.trustAsHtml(input);
+	}
+});
+
+// searchModule.directive('b',function(){
+// 	return{
+// 		restrict:'E',
+// 		template:'<span class="key" ng-transclude></span>',
+// 		transclude:true
+// 	};
+// });
 
 
 searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParams) {
