@@ -2,16 +2,9 @@
 </div>
 <div class="screen"></div>
 <div class="main" ng-controller="resultCtrl">
-	<div class="goodslist">
+	<div class="goodslist" infinite-scroll="demo.nextPage()" infinite-scroll-disabled="demo.busy" infinite-scroll-distance="1">
 		<ul class="listview recom result">
-			<!--li class="graphiclist">
-				<a href="#" class="btn">
-					<img src="./images/search_1.png">
-					<h2>海底捞火锅</h2>
-					<p class="word">"服务至上，顾客至上"</p>
-				</a>
-			</li-->
-			<li class="graphiclist" ng-repeat="item in searchList.guan">
+			<li class="graphiclist" ng-repeat="item in demo.guans">
 				<a href="{{item.url}}" class="btn">
 					<img src="{{item.logo}}">
 					<h2 ng-bind-html="item.name|trustHtml"></h2>
@@ -22,7 +15,7 @@
 		<div class="cate clearfix">
 			<h4 class="title">共{{searchList.count}}条搜索结果</h4>
 			<ul class="listview">
-				<li class="graphiclist" ng-repeat="item in searchList.list">
+				<li class="graphiclist" ng-repeat="item in demo.lists">
 					<a href="{{item.url}}" class="btn">
 						<img src="{{item.logo}}">
 						<h2 ng-bind-html="item.name|trustHtml">
@@ -30,37 +23,8 @@
 						<p class="word">"服务至上，顾客至上"</p>
 					</a>
 				</li>
-				<!--li class="graphiclist">
-					<a href="#" class="btn">
-						<img src="./images/goods.png">
-						<h2>
-							布丁
-							<span class="key">酒店</span>
-							预定热线
-						</h2>
-					</a>
-				</li>
-				<li class="graphiclist">
-					<a href="#" class="btn btn-detail">
-						<img src="./images/goods.png">
-						<h2>
-							半岛
-							<span class="key">酒店</span>
-						</h2>
-						<p>位于团结湖区域位于团结湖区域</p>
-					</a>
-				</li>
-				<li class="graphiclist">
-					<a href="#" class="btn btn-detail">
-						<img src="./images/goods.png">
-						<h2>
-							北京博悦
-							<span class="key">酒店</span>
-						</h2>
-						<p>位于团结湖区域位于团结湖区域</p>
-					</a>
-				</li-->
 			</ul>
 		</div>
+		<div ng-show="demo.busy" style="text-align:center">加载数据...</div>
 	</div>
 </div>

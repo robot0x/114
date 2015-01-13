@@ -49,25 +49,41 @@ locateModule.controller('locateCtrl', function($scope, $http, $state, $statePara
 	});
 });
 
-searchModule.controller('resultCtrl',function($scope, $http, $state, $stateParams) {
-	var key = $stateParams.keywords;
-	var city = $.cookie('cons_location');
-	var log = $.cookie('cons_lng');
-	var lat = $.cookie('cons_lat');
-	var apiUrl = 'http://search.teddymobile.cn/v1/api/search.api?key='+key+'&city='+city+'&log='+log+'&lat='+lat;
-	$http.jsonp(apiUrl+'&callfunc=JSON_CALLBACK')
-    .success(function(data) {
-    	console.log(data);
-    	$scope.searchList = data;
-    	// yellowKeyList = [];
-    	// for(var key in data.list){
-    	// 	yellowKeyList.push(key);
-    	// }
-    	// $scope.yellowKeyList = yellowKeyList;
-    })
-    .error(function(data){
-   
-    });
+searchModule.controller('resultCtrl',function($scope, $http, $state, $stateParams,Demo) {
+	var keywords = $stateParams.keywords;
+	$scope.demo = new Demo(keywords);
+});
+
+searchModule.factory('Demo',function($http){
+	var Demo = function(keywords){
+		this.busy = false;
+		this.guans = [];
+		this.lists = [];
+		this.keywords = keywords;
+	};
+
+	Demo.prototype.nextPage = function(){
+		if(this.busy) return;
+		this.busy = true;
+		var city = $.cookie('cons_location');
+		var log = $.cookie('cons_lng');
+		var lat = $.cookie('cons_lat');
+		//alert($stateParams.key);
+		var apiUrl = 'http://search.teddymobile.cn/v1/api/search.api?key='+this.keywords+'&city='+city+'&log='+log+'&lat='+lat;
+		$http.jsonp(apiUrl+'&callfunc=JSON_CALLBACK')
+	    .success(function(data) {
+	    	console.log(data);
+	    	for(var i = 0;i < data.guan.length; i++){
+	    		this.guans.push(data.guan[i]);	
+	    	}
+	    	for(var i = 0;i < data.list.length; i++){
+	    		this.lists.push(data.list[i]);	
+	    	}
+	    	this.busy = false;
+	    }.bind(this));
+	};
+	
+    return Demo;
 });
 
 searchModule.filter('trustHtml', function ($sce) {
