@@ -472,11 +472,10 @@ h4.title{
 .recom{
 	margin-top: .6em; 
 	background-color: #fff;
-	border: 1px solid #D0D0D0;
-	border-width: 1px 0;
+	padding-top: .05em;
 }
-.recom .graphiclist .btn {
-	border-bottom: 0;
+.recom .graphiclist:first-child .btn {
+	border-top: 1px solid #D5D5D5;
 }
 .recom .graphiclist .btn img{
 	max-width: 6em;
