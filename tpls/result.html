@@ -8,7 +8,7 @@
 				<a href="{{item.url}}" class="btn">
 					<img ng-src="{{item.logo}}">
 					<h2 ng-bind-html="item.name|trustHtml"></h2>
-					<p class="word">"服务至上，顾客至上"</p>
+					<p class="word">{{item.address}}</p>
 				</a>
 			</li>
 		</ul>
@@ -20,7 +20,7 @@
 						<img ng-src="{{item.logo}}">
 						<h2 ng-bind-html="item.name|trustHtml">
 						</h2>
-						<p class="word">"服务至上，顾客至上"</p>
+						<p class="word">{{item.address}}</p>
 					</a>
 				</li>
 			</ul>
