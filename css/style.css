@@ -414,9 +414,8 @@ h4.title{
 	overflow: visible;
 }
 .listview > .graphiclist > .btn {
-	padding: 0.2em;
+	padding: 0.2em 1.4em 0.2em 4.5em;
 	min-height: 4em;
-	padding-left: 4.5em;
 	color: #333;
 	border-bottom: 1px solid #D5D5D5;
 	margin: 0;
@@ -490,7 +489,7 @@ h4.title{
 	margin: .4em ;
 }
 .recom .graphiclist .btn {
-	padding-left: 6.8em;
+	padding-left: 6.2em;
 }
 .recom li .btn h2 {
 	margin: .6em 0 0 0;
@@ -520,10 +519,9 @@ h4.title{
 .result .graphiclist .btn {
 	padding-top: .6em;
 	padding-bottom: .6em;
+	padding-right: 1.4em;
 }
-.result .graphiclist .btn img{
 
-}
 .cate{
 	padding: .2em .4em;
 }
