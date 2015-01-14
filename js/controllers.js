@@ -110,6 +110,7 @@ searchModule.factory('Result',function($http){
 			    		this.flag = false;
 		    	}else{
 		    		$("#loadingText").text("没有搜索到结果。。。");
+		    		this.flag = false;
 		    		this.busy = true;
 		    	}
 		    	this.busy = false;
