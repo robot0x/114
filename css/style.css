@@ -193,6 +193,13 @@ ul, ul li{
 	padding: .6em.4em ;
 	border-top: 1px solid #D5D5D5;
 }
+.search-record .listview > li a{
+	color: #333333;
+	display: block;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
 .screen{
 	background-color: #000;
 	filter: Alpha(Opacity=60);

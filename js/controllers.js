@@ -149,7 +149,7 @@ searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParam
 		$scope.history_flag = false;
 	}
 	
-
+    //搜索框获得焦点，显示 取消/搜索 按钮和下拉历史记录
 	$('#search_input').focus(function() {
 		$('.search-record').css('display', 'block');
 		$('.screen').css('display', 'block');
@@ -163,8 +163,9 @@ searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParam
 			$('.cancel_btn').css('display', 'block');
 		}
 	});
+	//搜索框拾取焦点，输入框恢复原状 隐藏 取消/搜索 按钮
 	$('#search_input').blur(function() {
-		$('.search-record').removeAttr('style');
+		// $('.search-record').removeAttr('style');  //历史记录列表
 		$('.screen').removeAttr('style');
 		$(this).next('.r').removeAttr('style');
 		if (!$(this).val().length) {
@@ -173,6 +174,8 @@ searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParam
 			$(this).removeAttr('style');
 		}
 	});
+
+	//依据搜索框值的变化显示 取消或搜索按钮
 	$('#search_input').bind('input propertychange', function() {
 		if ($(this).val().length) {
 			$('.cancel_btn').removeAttr('style');
