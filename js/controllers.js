@@ -52,6 +52,25 @@ locateModule.controller('locateCtrl', function($scope, $http, $state, $statePara
 searchModule.controller('resultCtrl',function($scope, $http, $state, $stateParams,Result) {
 	var keywords = $stateParams.keywords;
 	$scope.result = new Result(keywords);
+	var history = new Object();
+	var current;
+	if(typeof($.cookie('history')) != 'undefined'){
+		current = JSON.parse($.cookie('history'));
+	}else{
+		current = new Array();
+	}
+	history.keywords = keywords;
+	var flag= true;
+	for(var i=0;i<current.length;i++){
+		if(history.keywords == current[i].keywords){
+			flag = false;
+		}
+	}
+	if(flag){
+		current.push(history);
+	}
+	//保存3天
+	$.cookie('history',JSON.stringify(current),{expires:3});
 });
 
 searchModule.factory('Result',function($http){
@@ -62,13 +81,13 @@ searchModule.factory('Result',function($http){
 		this.count = 0;
 		this.now = 0;
 		this.keywords = keywords;
+		this.flag = true;
 	};
 
 	Result.prototype.nextPage = function(){
 		if(this.busy) return;
 		this.busy = true;
-		//alert(this.now+" "+this.count);
-		if(this.now < this.count || (this.now == 0 && this.count == 0)){
+		if((this.now < this.count || (this.now == 0 && this.count == 0)) && this.flag){
 			var city = $.cookie('cons_location');
 			var log = $.cookie('cons_lng');
 			var lat = $.cookie('cons_lat');
@@ -81,12 +100,18 @@ searchModule.factory('Result',function($http){
 		    			this.guans.push(data.guan[i]);	
 		    		}
 		    	}
-		    	for(var i = 0;i < data.list.length; i++){
-		    		this.lists.push(data.list[i]);	
+		    	if(typeof(data.list) != 'undefined'){
+		    		for(var i = 0;i < data.list.length; i++){
+			    		this.lists.push(data.list[i]);	
+			    	}
+			    	this.now += data.list.length;
+			    	this.count = data.count;
+			    	if(this.count == 0)
+			    		this.flag = false;
+		    	}else{
+		    		$("#loadingText").text("没有搜索到结果。。。");
+		    		this.busy = true;
 		    	}
-		    	console.log("length:"+data.list.length+" now:"+this.now);
-		    	this.now += data.list.length;
-		    	this.count = data.count;
 		    	this.busy = false;
 		    }.bind(this));
 		}else{
@@ -109,6 +134,21 @@ searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParam
 	}else{
 		$scope.location = $scope.cons_city;
 	}
+	if(typeof($.cookie('history')) != 'undefined'){
+		var current = new Array();
+		var historys = new Array();
+		current = JSON.parse($.cookie('history'));
+		console.log(current);
+		for(var i = current.length ; (i > 0) && (i > current.length-3) ; i--){
+			historys.push(current[i-1].keywords);
+		}
+		//console.log(historys);
+		$scope.history_flag = true;
+		$scope.historys = historys;
+	}else{
+		$scope.history_flag = false;
+	}
+	
 
 	$('#search_input').focus(function() {
 		$('.search-record').css('display', 'block');
