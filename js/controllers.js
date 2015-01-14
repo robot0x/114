@@ -166,13 +166,21 @@ searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParam
 	//搜索框拾取焦点，输入框恢复原状 隐藏 取消/搜索 按钮
 	$('#search_input').blur(function() {
 		// $('.search-record').removeAttr('style');  //历史记录列表
-		$('.screen').removeAttr('style');
-		$(this).next('.r').removeAttr('style');
-		if (!$(this).val().length) {
-			$('.cancel_btn').removeAttr('style');
-			$('#search_btn').removeAttr('style');
+		// $('.screen').removeAttr('style');
+		// $(this).next('.r').removeAttr('style');
+		// if (!$(this).val().length) {
+		// 	$('.cancel_btn').removeAttr('style');
+		// 	$('#search_btn').removeAttr('style');
+		// 	$(this).removeAttr('style');
+		// }
+		$('#cancel_btn').click(function() {
+			$('.search-record').removeAttr('style');  //历史记录列表
+			$('.screen').removeAttr('style');
+			$('#search_input').next('.r').removeAttr('style');
 			$(this).removeAttr('style');
-		}
+			$('#search_btn').removeAttr('style');
+			$('#search_input').removeAttr('style');
+		});
 	});
 
 	//依据搜索框值的变化显示 取消或搜索按钮
