@@ -16,11 +16,12 @@
 			<h4 class="title">共{{result.count}}条搜索结果</h4>
 			<ul class="listview" infinite-scroll="result.nextPage()" infinite-scroll-disabled="result.busy" infinite-scroll-distance="1">
 				<li class="graphiclist" ng-repeat="item in result.lists">
-					<a href="{{item.url}}" class="btn">
+					<a href="{{item.url}}" class="btn btn-detail">
 						<img ng-src="{{item.logo}}">
 						<h2 ng-bind-html="item.name|trustHtml">
 						</h2>
-						<p class="word">{{item.address}}</p>
+						<p>{{item.address}}</p>
+						<p class="distance">2公里</p>
 					</a>
 				</li>
 			</ul>
