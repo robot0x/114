@@ -6,6 +6,13 @@ var locateModule = angular.module('LocateModule',[]);
 
 var searchModule = angular.module('SearchModule',[]);
 
+//加入友盟统计代码
+function onKVEvent(tag,map,duration) {
+    map.id = tag;
+    map.duration = duration;
+    prompt("ekv", JSON.stringify(map));
+}
+
 yellowModule.controller('yellowCtrl', function($scope, $http, $state, $stateParams) {
 	var apiUrl = 'http://search.teddymobile.cn/v1/api/yellow.api?yellow='+$stateParams.key+'&device='+$scope.G_DEVICE;
 	$http.jsonp(apiUrl+'&callfunc=JSON_CALLBACK')
@@ -124,6 +131,9 @@ searchModule.factory('Result',function($http){
 		    	}
 		    	this.busy = false;
 		    }.bind(this));
+		    if(this.now == 0 && this.count == 0){
+		    	onKVEvent('click',{'item':'搜索','key':this.keywords});
+		    }
 		}else{
 			$("#loadingText").text("没有更多数据");
 		}
@@ -139,6 +149,7 @@ searchModule.filter('trustHtml', function ($sce) {
 });
 
 searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParams) {
+
 	if(typeof($.cookie('cons_location')) != 'undefined'){
 		$scope.location = $.cookie('cons_location');
 	}else{
@@ -156,6 +167,20 @@ searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParam
 	}else{
 		$scope.history_flag = false;
 	}
+
+	//切换城市
+	$('.locate_btn').click(function(){
+		onKVEvent('click',{'item':'选择城市'});
+	});
+
+	//首页链接
+	$(".quicklink a").click(function () {
+    	onKVEvent('click',{'item' : $(this).find('h3').html()});
+    });
+
+    $(".grid-a a").click(function(){
+    	onKVEvent('click',{'item' : $(this).html()});
+    });
 	
     //搜索框获得焦点，显示 取消/搜索 按钮和下拉历史记录
 	$('#search_input').focus(function() {
@@ -182,6 +207,7 @@ searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParam
 		// 	$(this).removeAttr('style');
 		// }
 		$('#cancel_btn').click(function() {
+			onKVEvent('click',{'item':'取消搜索'});
 			$('.search-record').removeAttr('style');  //历史记录列表
 			$('.screen').removeAttr('style');
 			$('#search_input').next('.r').removeAttr('style');
