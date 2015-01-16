@@ -8,26 +8,34 @@ var app114 = angular.module('app114', ['ui.router','YellowModule','IndexModule',
  * @return {[type]}
  */
 app114.run(function($rootScope, $state, $stateParams) {
-    $rootScope.cons_city = remote_ip_info['city'];
+    //$rootScope.cons_city = remote_ip_info['city'];
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
+    //定义系统全局变量
+    //城市名称
+    $rootScope.G_CITY = '南通';
+    //经纬度
+    $rootScope.G_LOG = 120.913183;
+    $rootScope.G_LAT = 32.013195;
+    //设备ID
+    $rootScope.G_DEVICE = '123456';
 });
 
-function getLocation(){
-    var geolocation = new BMap.Geolocation();
-    geolocation.getCurrentPosition(function(r){
-        if(this.getStatus() == BMAP_STATUS_SUCCESS){
-            $.cookie('cons_lng',r.point.lng);
-            $.cookie('cons_lat',r.point.lat);
-        }
-        else {
-        }        
-    },{enableHighAccuracy: true})    
-}
+// function getLocation(){
+//     var geolocation = new BMap.Geolocation();
+//     geolocation.getCurrentPosition(function(r){
+//         if(this.getStatus() == BMAP_STATUS_SUCCESS){
+//             $.cookie('cons_lng',r.point.lng);
+//             $.cookie('cons_lat',r.point.lat);
+//         }
+//         else {
+//         }        
+//     },{enableHighAccuracy: true})    
+// }
 
-if(typeof($.cookie('cons_lng')) == 'undefined'){
-    getLocation();
-}
+// if(typeof($.cookie('cons_lng')) == 'undefined'){
+//     getLocation();
+// }
 
 /**
  * 配置路由。

@@ -7,7 +7,7 @@ var locateModule = angular.module('LocateModule',[]);
 var searchModule = angular.module('SearchModule',[]);
 
 yellowModule.controller('yellowCtrl', function($scope, $http, $state, $stateParams) {
-	var apiUrl = 'http://search.teddymobile.cn/v1/api/yellow.api?yellow='+$stateParams.key;
+	var apiUrl = 'http://search.teddymobile.cn/v1/api/yellow.api?yellow='+$stateParams.key+'&device='+$scope.G_DEVICE;
 	$http.jsonp(apiUrl+'&callfunc=JSON_CALLBACK')
     .success(function(data) {
     	$scope.yellowList = data;
@@ -27,8 +27,13 @@ indexModule.controller('indexCtrl',['$scope','$http','$state','$stateParams',fun
 		$scope.location = $stateParams.address;
 		$.cookie('cons_location',$stateParams.address);
 	}
-
-	var py = cityList[$.cookie('cons_location')];
+	var py;
+	if(typeof($.cookie('cons_location')) != 'undefined'){
+		py = $.cookie('cons_location');
+	}else{
+		py = $scope.G_CITY;
+	}
+	py = cityList[py];
 	$("a[source=gj]").each(function (i, a) {
 		$(a).attr('href', "http://txl.3g.ganji.com/" + py + $(a).attr('url')); //生成对应的url
 	});
@@ -51,7 +56,7 @@ locateModule.controller('locateCtrl', function($scope, $http, $state, $statePara
 
 searchModule.controller('resultCtrl',function($scope, $http, $state, $stateParams,Result) {
 	var keywords = $stateParams.keywords;
-	$scope.result = new Result(keywords);
+	$scope.result = new Result(keywords,$scope);
 	var history = new Object();
 	var current;
 	if(typeof($.cookie('history')) != 'undefined'){
@@ -74,7 +79,7 @@ searchModule.controller('resultCtrl',function($scope, $http, $state, $stateParam
 });
 
 searchModule.factory('Result',function($http){
-	var Result = function(keywords){
+	var Result = function(keywords,$scope){
 		this.busy = false;
 		this.guans = [];
 		this.lists = [];
@@ -82,19 +87,22 @@ searchModule.factory('Result',function($http){
 		this.now = 0;
 		this.keywords = keywords;
 		this.flag = true;
+		if(typeof($.cookie('cons_location')) != 'undefined'){
+			this.G_CITY = $.cookie('cons_location');
+		}else{
+			this.G_CITY = $scope.G_CITY;
+		}
+		this.G_LOG = $scope.G_LOG;
+		this.G_LAT = $scope.G_LAT;
 	};
 
 	Result.prototype.nextPage = function(){
 		if(this.busy) return;
 		this.busy = true;
 		if((this.now < this.count || (this.now == 0 && this.count == 0)) && this.flag){
-			var city = $.cookie('cons_location');
-			var log = $.cookie('cons_lng');
-			var lat = $.cookie('cons_lat');
-			var apiUrl = 'http://search.teddymobile.cn/v1/api/search.api?key='+this.keywords+'&city='+city+'&log='+log+'&lat='+lat+'&offset='+this.now;
+			var apiUrl = 'http://search.teddymobile.cn/v1/api/search.api?key='+this.keywords+'&city='+this.G_CITY+'&log='+this.G_LOG+'&lat='+this.G_LAT+'&offset='+this.now;
 			$http.jsonp(apiUrl+'&callfunc=JSON_CALLBACK')
 		    .success(function(data) {
-		    	console.log(data);
 		    	if(typeof(data.guan) != 'undefined'){
 		    		for(var i = 0;i < data.guan.length; i++){
 		    			this.guans.push(data.guan[i]);	
@@ -133,17 +141,15 @@ searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParam
 	if(typeof($.cookie('cons_location')) != 'undefined'){
 		$scope.location = $.cookie('cons_location');
 	}else{
-		$scope.location = $scope.cons_city;
+		$scope.location = $scope.G_CITY;
 	}
 	if(typeof($.cookie('history')) != 'undefined'){
 		var current = new Array();
 		var historys = new Array();
 		current = JSON.parse($.cookie('history'));
-		console.log(current);
 		for(var i = current.length ; (i > 0) && (i > current.length-3) ; i--){
 			historys.push(current[i-1].keywords);
 		}
-		//console.log(historys);
 		$scope.history_flag = true;
 		$scope.historys = historys;
 	}else{
