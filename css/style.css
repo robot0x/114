@@ -439,11 +439,11 @@ h4.title{
 .listview > .graphiclist > .btn .distance{
 	position: absolute;
 	display: block;
-	right: 1.8em;
+	right: 1.4em;
 	top: 50%;
-	font-size: .6em;
+	font-size: .7em;
 	text-align: right;
-	margin-top: -0.6em;
+	margin-top: -0.52em;
 }
 .listview > li .btn h2{
 	font-size: 1em;
@@ -469,13 +469,13 @@ h4.title{
 	color: #33B5E5;
 }
 .listview > .graphiclist .btn-detail{
-	padding-right: 3.4em;
+	padding-right: 3.2em;
 }
 .listview > li .btn-detail h2{
 	margin: .65em 0 0 0;
 }
 .listview .graphiclist .btn:after{
-	right: .5625em;
+	right: .1em;
 	top: 50%;
 	content: "";
 	position: absolute;
@@ -486,6 +486,7 @@ h4.title{
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-image:url(../images/carat-r.png);
+	background-size: auto 100%;
 }
 .recom{
 	margin-top: .6em; 
@@ -526,6 +527,7 @@ h4.title{
 	padding: .1em .2em .2em 1em;
 }
 .recom .graphiclist .btn:after{
+	right: .5625em;
 	background-image: url(../images/dcarat-r.png);
 }
 .result .graphiclist .btn {
