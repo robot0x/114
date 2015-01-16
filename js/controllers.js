@@ -103,6 +103,7 @@ searchModule.factory('Result',function($http){
 			var apiUrl = 'http://search.teddymobile.cn/v1/api/search.api?key='+this.keywords+'&city='+this.G_CITY+'&log='+this.G_LOG+'&lat='+this.G_LAT+'&offset='+this.now;
 			$http.jsonp(apiUrl+'&callfunc=JSON_CALLBACK')
 		    .success(function(data) {
+		    	//console.log(data);
 		    	if(typeof(data.guan) != 'undefined'){
 		    		for(var i = 0;i < data.guan.length; i++){
 		    			this.guans.push(data.guan[i]);	
