@@ -16,7 +16,7 @@
 		<h4 class="title">{{yellowKey}}</h4>
 		<ul class="listview">
 			<li class="graphiclist" ng-repeat="item in yellowList.list[yellowKey]">
-				<a href="{{item.url}}" class="btn">
+				<a href="tedcontact:{{item.phone}}" class="btn">
 					<img ng-src="{{item.logo}}">
 					<h2>{{item.name}}</h2>
 				</a>
@@ -27,7 +27,7 @@
 	<div class="cate clearfix" ng-if="yellowList.type=='list'">
 		<ul class="listview">
 			<li class="graphiclist" ng-repeat="item in yellowList.list">
-				<a href="{{item.url}}" class="btn">
+				<a href="tedcontact:{{item.phone}}" class="btn">
 					<img ng-src="{{item.logo}}">
 					<h2>{{item.name}}</h2>
 				</a>
