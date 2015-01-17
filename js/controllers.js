@@ -45,6 +45,8 @@ indexModule.controller('indexCtrl',['$scope','$http','$state','$stateParams',fun
 	$("a[source=gj]").each(function (i, a) {
 		$(a).attr('href', "http://txl.3g.ganji.com/" + py + $(a).attr('url')); //生成对应的url
 	});
+	//调用Android的javascript interface
+	window.jsi.path();
 
 }]);
 
@@ -170,7 +172,7 @@ searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParam
 	}
 
 	//切换城市
-	$('.locate_btn').click(function(){
+	$('.grid-a .locate_btn').click(function(){
 		onKVEvent('click',{'item':'选择城市'});
 	});
 

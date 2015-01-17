@@ -21,22 +21,6 @@ app114.run(function($rootScope, $state, $stateParams) {
     $rootScope.G_DEVICE = '123456';
 });
 
-// function getLocation(){
-//     var geolocation = new BMap.Geolocation();
-//     geolocation.getCurrentPosition(function(r){
-//         if(this.getStatus() == BMAP_STATUS_SUCCESS){
-//             $.cookie('cons_lng',r.point.lng);
-//             $.cookie('cons_lat',r.point.lat);
-//         }
-//         else {
-//         }        
-//     },{enableHighAccuracy: true})    
-// }
-
-// if(typeof($.cookie('cons_lng')) == 'undefined'){
-//     getLocation();
-// }
-
 /**
  * 配置路由。
  * 注意这里采用的是ui-router这个路由，而不是ng原生的路由。
