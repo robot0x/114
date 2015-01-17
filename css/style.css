@@ -433,8 +433,9 @@ h4.title{
 	top: 0;
 	max-height: 4em;
 	max-width: 4em;
-	margin: .2em 0;
+	margin: .18em 0;
 	border:0;
+	border-radius: 2em;
 }
 .listview > .graphiclist > .btn .distance{
 	position: absolute;
