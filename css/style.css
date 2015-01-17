@@ -228,7 +228,7 @@ ul, ul li{
 	padding-right: 0;
 }
 .quicklink li a{
-	padding: 0.5em 3.4em 0.5em 0.4em;
+	padding: 0.5em 3.4em 0.5em 0.8em;
 	height: 3em;
 	margin: 0;
 	display: block;
@@ -241,7 +241,7 @@ ul, ul li{
 }
 .quicklink li h3{
 	font-size: 1.1em;
-	margin: .2em 0;
+	margin: .8em 0;
 	overflow: hidden;
 	white-space: nowrap;
 }
