@@ -46,8 +46,7 @@ indexModule.controller('indexCtrl',['$scope','$http','$state','$stateParams',fun
 		$(a).attr('href', "http://txl.3g.ganji.com/" + py + $(a).attr('url')); //生成对应的url
 	});
 	//调用Android的javascript interface
-	window.jsi.path();
-
+	//window.jsi.path();
 }]);
 
 locateModule.controller('locateCtrl', function($scope, $http, $state, $stateParams) {
@@ -181,7 +180,7 @@ searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParam
     	onKVEvent('click',{'item' : $(this).find('h3').html()});
     });
 
-    $(".grid-a a").click(function(){
+    $(".subsec .grid-a a").click(function(){
     	onKVEvent('click',{'item' : $(this).html()});
     });
 	
