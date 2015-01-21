@@ -498,9 +498,12 @@ h4.title{
 	border-top: 1px solid #D5D5D5;
 }
 .recom .graphiclist .btn img{
-	max-width: 6em;
-	max-height: 5em;
-	margin: .4em ;
+	width: 4.4em;
+	height: 4.4em;
+	border-radius:2.2em;
+	max-width: 4.4em;
+	max-height: 4.4em;
+	margin: .35em ;
 }
 .recom .graphiclist .btn {
 	padding-left: 6.2em;
