@@ -29,9 +29,8 @@ app114.run(function($rootScope, $state, $stateParams) {
  * @param  {[type]} $urlRouterProvider
  * @return {[type]}
  */
-app114.config(['$stateProvider','$urlRouterProvider','$locationProvider',function($stateProvider, $urlRouterProvider,$locationProvider) {
+app114.config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/index');
-    $locationProvider.html5Mode(true);
     $stateProvider
         .state('index', {
             url: '/index',
