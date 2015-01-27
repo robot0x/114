@@ -85,6 +85,7 @@ searchModule.controller('resultCtrl',function($scope, $http, $state, $stateParam
 	}
 	//保存3天
 	$.cookie('history',JSON.stringify(current),{expires:3});
+	console.log($.cookie('history'));
 });
 
 searchModule.factory('Result',function($http){
@@ -189,7 +190,7 @@ searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParam
 		$('.search-record').css('display', 'block');
 		$('.screen').css('display', 'block');
 		$(this).css('width', '84%');
-		$(this).next('.r').css({'right':'16%','margin-right':'.2em'});
+		$(this).next('.r').css({'right':'16%','margin-right':'.3em'});
 		if ($(this).val().length) {
 			$('.cancel_btn').removeAttr('style');
 			$('#search_btn').css('display', 'block');

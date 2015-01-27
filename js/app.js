@@ -29,8 +29,9 @@ app114.run(function($rootScope, $state, $stateParams) {
  * @param  {[type]} $urlRouterProvider
  * @return {[type]}
  */
-app114.config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+app114.config(['$stateProvider','$urlRouterProvider','$compileProvider',function($stateProvider, $urlRouterProvider,$compileProvider) {
     $urlRouterProvider.otherwise('/index');
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|javascript|tedsearchcontact):/);
     $stateProvider
         .state('index', {
             url: '/index',

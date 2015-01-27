@@ -431,8 +431,8 @@ h4.title{
 	position: absolute;
 	left: 0;
 	top: 0;
-	max-height: 4em;
-	max-width: 4em;
+	height: 4em;
+	width: 4em;
 	margin: .18em 0;
 	border:0;
 	border-radius: 2em;
@@ -501,8 +501,6 @@ h4.title{
 	width: 4.4em;
 	height: 4.4em;
 	border-radius:2.2em;
-	max-width: 4.4em;
-	max-height: 4.4em;
 	margin: .35em ;
 }
 .recom .graphiclist .btn {
