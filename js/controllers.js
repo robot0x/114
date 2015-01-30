@@ -184,13 +184,17 @@ searchModule.controller('searchCtrl',function($scope, $http, $state, $stateParam
     $(".subsec .grid-a a").click(function(){
     	onKVEvent('click',{'item' : $(this).html()});
     });
+
+    $(".subsec .grid-solo a").click(function(){
+    	onKVEvent('click',{'item' : $(this).html()});
+    });
 	
     //搜索框获得焦点，显示 取消/搜索 按钮和下拉历史记录
 	$('#search_input').focus(function() {
 		$('.search-record').css('display', 'block');
 		$('.screen').css('display', 'block');
 		$(this).css('width', '84%');
-		$(this).next('.r').css({'right':'16%','margin-right':'.3em'});
+		//$(this).next('.r').css({'right':'16%','margin-right':'.3em'});
 		if ($(this).val().length) {
 			$('.cancel_btn').removeAttr('style');
 			$('#search_btn').css('display', 'block');
