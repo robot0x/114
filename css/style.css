@@ -52,13 +52,10 @@ ul, ul li{
 .grid-b > .block-a,
 .grid-b > .block-b,
 .grid-b > .block-c {
-	/* width: 33.25%; IE7 */
-	/* margin-right: -.5px; BB5 */
 	width: 33.333%;
 }
 .header{
 	background-color: #efeff4;
-	/*height: 2.75em;*/
 	font-size: 1em;
 	min-height: 1.1em;
 	display: block;
@@ -78,27 +75,12 @@ ul, ul li{
 .header .block-a{
 	width: 30%;
 	position: relative;
-	padding: .4em;
+	padding: .4em 0 .4em .4em;
 }
 .header .block-b{
 	width: 70%;
-	padding: .4em;
+	padding: .4em .4em .4em 0;
 	position: relative;
-}
-.header .block-b:before,
-.header .block-b .r{
-	width: 1px;
-	height: 5px;
-	background-color: #7dbbd2;
-	position: absolute;
-	bottom: .4em;
-}
-.header .block-b:before{
-	content: '';
-	left: .4em;
-}
-.header .block-b .r{
-	right: .4em;
 }
 .header .locate_btn{
 	width: 100%;
@@ -120,9 +102,12 @@ ul, ul li{
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	border-color: #7dbbd2 ;
-	border-style: solid;
-	border-width: 0 0 1px 0;
+	border: 1px solid #bebec0 ;
+	background-color: #ffffff;
+	-webkit-border-top-left-radius: .5em;
+	-webkit-border-bottom-left-radius: .5em;
+	border-top-left-radius: .5em;
+	border-bottom-left-radius: .5em;
 }
 .header .block-a:after{
 	content: '';
@@ -132,16 +117,18 @@ ul, ul li{
 	width: .6em;
 	height: .6em;
 	position: absolute;
-	bottom: .4em;
-	right: .4em;
+	bottom: .5em;
+	right: 0;
+	z-index: 11;
 }
 
 .header .block-b input {
-	border: 1px solid #7dbbd2;
-	border-width: 0 0 1px 0;
-	border-radius: 0;
-	padding: .35em 0 .3em .4em;
-	padding-left: 1.2em;
+	border: 1px solid #bebec0;
+	-webkit-border-top-right-radius: .5em;
+	-webkit-border-bottom-right-radius: .5em;
+	border-top-right-radius: .5em;
+	border-bottom-right-radius: .5em;
+	padding: .35em 0 .3em 1.6em;
 	margin: 0;
 	min-height: 1em;
 	text-align: left;
@@ -154,11 +141,26 @@ ul, ul li{
 	box-sizing: border-box;
 	outline: 0;
 	font-size: 1em;
+	background-color: #fff;
 	background-image: url(../images/search.png);
 	background-repeat: no-repeat;
 	background-size: auto 60%;
-	background-position: left;
+	background-position: .3em;
 	color: #8e8e93;
+}
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+    color: #e5e5e5;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #e5e5e5;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #e5e5e5;
 }
 .header .block-b input:focus{
 	background-image: none;
@@ -228,7 +230,7 @@ ul, ul li{
 	padding-right: 0;
 }
 .quicklink li a{
-	padding: 0.5em 3.4em 0.5em 0.8em;
+	padding: 0.5em 4em 0.5em 0.8em;
 	height: 3em;
 	margin: 0;
 	display: block;
@@ -252,21 +254,21 @@ ul, ul li{
 	white-space: nowrap;*/
 }
 .quicklink li img{
-	margin: .5em .2em;
-	max-width: 3em;
-	max-height: 3em;
+	margin: .3em;
+	max-width: 3.4em;
+	max-height: 3.4em;
 	position: absolute;
 	right: 0;
 	top: 0;
 }
 .quicklink .ql1 a{
-	background-color:#b9adf5; 
+	background-color:#f9c03a; 
 }
 .quicklink .ql2 a{
 	background-color:#89c05f; 
 }
 .quicklink .ql3 a{
-	background-color:#f9c03a; 
+	background-color:#b9adf5; 
 }
 .quicklink .ql4 a{
 	background-color:#ef674d; 
@@ -436,6 +438,7 @@ h4.title{
 	margin: .18em 0;
 	border:0;
 	border-radius: 2em;
+	-webkit-border-radius: 2em;
 }
 .listview > .graphiclist > .btn .distance{
 	position: absolute;
@@ -501,6 +504,7 @@ h4.title{
 	width: 4.4em;
 	height: 4.4em;
 	border-radius:2.2em;
+	-webkit-border-radius: 2.2em;
 	margin: .35em ;
 }
 .recom .graphiclist .btn {
