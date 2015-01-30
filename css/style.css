@@ -84,6 +84,7 @@ ul, ul li{
 }
 .header .locate_btn{
 	width: 100%;
+	height: 34px;
 	font-size: 1em;
 	padding: .4em 0;
 	font-weight: normal;
@@ -108,8 +109,11 @@ ul, ul li{
 	-webkit-border-bottom-left-radius: .5em;
 	border-top-left-radius: .5em;
 	border-bottom-left-radius: .5em;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
-.header .block-a:after{
+.header .block-a .locate_btn:after{
 	content: '';
 	background-image: url(../images/locate_bg.png);
 	background-repeat: no-repeat;
@@ -117,13 +121,15 @@ ul, ul li{
 	width: .6em;
 	height: .6em;
 	position: absolute;
-	bottom: .5em;
-	right: 0;
+	bottom: 1px;
+	right: 1px;
 	z-index: 11;
 }
 
 .header .block-b input {
+	height: 34px;
 	border: 1px solid #bebec0;
+	border-left-width: 0;
 	-webkit-border-top-right-radius: .5em;
 	-webkit-border-bottom-right-radius: .5em;
 	border-top-right-radius: .5em;
