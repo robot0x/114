@@ -6,7 +6,8 @@
 		<ul class="listview recom result">
 			<li class="graphiclist" ng-repeat="item in result.guans">
 				<a href="tedsearchcontact:{{item.phone}}" class="btn">
-					<img ng-src="{{item.logo}}">
+					<img ng-src="{{item.logo}}" ng-if="item.logo">
+					<img ng-src="images/default.png" ng-if="!item.logo">
 					<h2 ng-bind-html="item.name|trustHtml"></h2>
 					<p class="word">{{item.address}}</p>
 				</a>
@@ -17,7 +18,8 @@
 			<ul class="listview" infinite-scroll="result.nextPage()" infinite-scroll-disabled="result.busy" infinite-scroll-distance="1">
 				<li class="graphiclist" ng-repeat="item in result.lists">
 					<a href="tedsearchcontact:{{item.phone}}" class="btn btn-detail">
-						<img ng-src="{{item.logo}}">
+						<img ng-src="{{item.logo}}" ng-if="item.logo">
+						<img ng-src="images/default.png" ng-if="!item.logo">
 						<h2 ng-bind-html="item.name|trustHtml">
 						</h2>
 						<p>{{item.address}}</p>
